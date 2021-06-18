@@ -13,14 +13,13 @@ import java.util.concurrent.Phaser;
 public class PhaserDemo2 {
 
     public static void main(String[] args) {
-        MyPhaser phsr = new MyPhaser(1, 4);
+        MyPhaser phsr = new MyPhaser(1, 10);
         int curPhase;
         System.out.println("Запуск потоків");
 
         new Thread(new MyThread(phsr, "A")).start();
         new Thread(new MyThread(phsr, "B")).start();
         new Thread(new MyThread(phsr, "C")).start();
-        /*
         new Thread(new MyThread(phsr, "D")).start();
         new Thread(new MyThread(phsr, "E")).start();
         new Thread(new MyThread(phsr, "F")).start();
@@ -29,7 +28,6 @@ public class PhaserDemo2 {
         new Thread(new MyThread(phsr, "X")).start();
         new Thread(new MyThread(phsr, "Y")).start();
         new Thread(new MyThread(phsr, "Z")).start();
-         */
 
         while (!phsr.isTerminated()) {
             phsr.arriveAndAwaitAdvance();
