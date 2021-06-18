@@ -1,6 +1,3 @@
-
-import java.util.concurrent.Semaphore;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +7,11 @@ import java.util.concurrent.Semaphore;
  *
  * @author olden
  */
-public class SemDemo {
+public class ProdCon {
 
     public static void main(String[] args) {
-        Semaphore sem = new Semaphore(1);
-        IncThread incThread = new IncThread(sem, "A"); //.start();
-        DecThread decThread = new DecThread(sem, "B"); //.start();
+        Q q = new Q();
+        new Thread(new Consumer(q), "Consumer").start();
+        new Thread(new Producer(q), "Producer").start();
     }
 }
