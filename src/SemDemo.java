@@ -1,21 +1,20 @@
+
+import java.util.concurrent.Semaphore;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java.complete.reference.pkg10th.edition.part28.parallels;
-
 /**
  *
  * @author olden
  */
-public class JavaCompleteReference10thEditionPart28Parallels {
+public class SemDemo {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Semaphore sem = new Semaphore(1);
+        IncThread incThread = new IncThread(sem, "A"); //.start();
+        DecThread decThread = new DecThread(sem, "B"); //.start();
     }
-    
 }
