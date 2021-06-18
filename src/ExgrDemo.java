@@ -1,5 +1,5 @@
 
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.Exchanger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,11 +10,11 @@ import java.util.concurrent.Semaphore;
  *
  * @author olden
  */
-public class SemDemo {
+public class ExgrDemo {
 
     public static void main(String[] args) {
-        Semaphore sem = new Semaphore(1);
-        IncThread incThread = new IncThread(sem, "A"); //.start();
-        DecThread decThread = new DecThread(sem, "B"); //.start();
+        Exchanger<String> exgr = new Exchanger<String>();
+        new Thread(new UseString(exgr)).start();
+        new Thread(new MakeString(exgr)).start();
     }
 }
