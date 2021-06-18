@@ -25,25 +25,15 @@ public class MyThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Потік " + name + " починає " + phsr.getPhase() + " фазу ");
-        phsr.arriveAndAwaitAdvance();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
+        while (!phsr.isTerminated()) {
+            System.out.println("Потік " + name + " починає " + phsr.getPhase() + " фазу ");
+            phsr.arriveAndAwaitAdvance();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
-        System.out.println("Потік " + name + " починає " + phsr.getPhase() + " фазу ");
-        phsr.arriveAndAwaitAdvance();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println("Потік " + name + " починає " + phsr.getPhase() + " фазу ");
-        phsr.arriveAndDeregister();
-
     }
 
 }
